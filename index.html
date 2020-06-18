@@ -4,31 +4,31 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Yummy Eats</title>
+        <title>Yummy Eatery</title>
         <link rel="stylesheet" href="css/main.css">
     </head>
 
     <body>
         <div class="overlay" id="overlay">
-            <h3>Searching now...</h3>
+            <h3>Searching...</h3>
         </div>
         <div class="hero-bg">
             <section class="top">
                 <header>
-                    <a href="#">yummy.eats</a>
+                    <a href="#">Yummy Eatery</a>
                 </header>
                 <h1><span>The Healthy</span> Eating Experience</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt neque maiores officiis ducimus odio
                     qui quisquam eius delectus! Inventore, sequi!
                 </p>
                 <div class="form-container">
-                    <form action="">
+                    <form id="form" action="">
                         <div class="form-left">
                             <label for="city">Enter your city:</label>
-                            <input type="text" name="city" id="city">
+                            <input type="text" name="city" id="city" autocomplete="off" required>
                             <p>Example: "Indianapolis"</p>
                         </div>
-                        <input type="button" value="Find Food Now" id="cta-btn">
+                        <input type="button" value="Find Food Now" id="cta-btn" required>
                     </form>
                 </div>
             </section>
@@ -46,16 +46,21 @@
 
         <script>
             let btn = document.getElementById("cta-btn");
+            let form = document.getElementById("form");
+            let cityField = document.getElementById("city");
             let overlay = document.getElementById("overlay");
 
-            btn.addEventListener("click", () => {
+            btn.addEventListener("click", animateOverlay);
+            form.addEventListener("submit", animateOverlay);
+            function animateOverlay(event) {
+                event.preventDefault();
                 overlay.style.display = 'grid';
                 overlay.classList.add("animate-overlay");
                 setTimeout(() => {
                     overlay.classList.remove("animate-overlay");
                     overlay.style.display = 'none';
                 }, 3000);
-            });
+            }
         </script>
     </body>
 
